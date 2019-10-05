@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +29,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Profile.class);
                 String first = firtsName.getText().toString();
                 String last = lastName.getText().toString();
-
-                intent.putExtra("firtsName", first);
-                intent.putExtra("lastName", last);
-                startActivity(intent);
+                if(first.isEmpty() || last.isEmpty())
+                {
+                    Toast.makeText(MainActivity.this,"Fill out the blanks!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    intent.putExtra("firtsName", first);
+                    intent.putExtra("lastName", last);
+                    startActivity(intent);
+                }
             }
         });
 
